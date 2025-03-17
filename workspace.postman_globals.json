@@ -1,0 +1,45 @@
+{
+	"id": "c4f6ef12-b871-4fdf-8459-7ef5a9fe9329",
+	"values": [
+		{
+			"key": "RegisterURL",
+			"value": "https://dummy.url.register",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "LoginURL",
+			"value": "https://dummy.url.login",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "AccountURL",
+			"value": "https://dummy.url.account",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ProductsURL",
+			"value": "https://dummy.url.products",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "encryptedPassword",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "userName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-03-17T10:40:31.175Z",
+	"_postman_exported_using": "Postman/11.32.4"
+}

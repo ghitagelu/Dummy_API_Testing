@@ -1,0 +1,775 @@
+{
+	"info": {
+		"_postman_id": "2246b9a9-c5da-4478-be61-d69730d33839",
+		"name": "Dummy API testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42229398"
+	},
+	"item": [
+		{
+			"name": "1.Register",
+			"item": [
+				{
+					"name": "Registration - success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"birthday\");\r",
+									"    pm.expect(jsonData).to.have.property(\"phone\");\r",
+									"    pm.expect(jsonData).to.have.property(\"email\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isPromotion\");\r",
+									"    pm.expect(jsonData).to.have.property(\"allowDataSharing\");\r",
+									"    pm.expect(jsonData).to.have.property(\"encryptedPassword\");\r",
+									"    pm.expect(jsonData).to.have.property(\"username\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isBagMerged\");\r",
+									"    pm.expect(jsonData).to.have.property(\"loyaltyCardNumber\");\r",
+									"    pm.expect(jsonData).to.have.property(\"accountId\");\r",
+									"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+									"    pm.expect(jsonData).to.have.property(\"cookies\");\r",
+									"    pm.expect(jsonData).to.have.property(\"customData\");\r",
+									"    pm.expect(jsonData).to.have.property(\"success\");\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"    pm.expect(jsonData).to.have.property(\"responseCode\");\r",
+									"    pm.expect(jsonData).to.have.property(\"statusCode\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"responsCode is 0\", function () {\r",
+									"    pm.expect(jsonData.responseCode).to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"isPromotion\": true,\r\n \"allowDataSharing\": false,\r\n \"profile\": {\r\n  \"allowDataSharing\": false,\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"title\": \"Mr\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"isPromotion\": true,\r\n  \"encryptedPassword\": \"TestingAPIdummy!\",\r\n  \"lastName\": \"{{$randomLastName}}\"\r\n },\r\n \"credentials\": {\r\n  \"username\": \"{{$randomEmail}}\",\r\n  \"password\": \"TestingAPIdummy!\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{RegisterURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isPromotion\\\":true,\\\"allowDataSharing\\\":false,\\\"profile\\\":{\\\"allowDataSharing\\\":false,\\\"firstName\\\":\\\"Ciaules\\\",\\\"title\\\":\\\"Mr\\\",\\\"email\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"isPromotion\\\":true,\\\"encryptedPassword\\\":\\\"CottonTest12?\\\",\\\"lastName\\\":\\\"Gelule\\\"},\\\"credentials\\\":{\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/register/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				},
+				{
+					"name": "Registration - success + save credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"birthday\");\r",
+									"    pm.expect(jsonData).to.have.property(\"phone\");\r",
+									"    pm.expect(jsonData).to.have.property(\"email\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isPromotion\");\r",
+									"    pm.expect(jsonData).to.have.property(\"allowDataSharing\");\r",
+									"    pm.expect(jsonData).to.have.property(\"encryptedPassword\");\r",
+									"    pm.expect(jsonData).to.have.property(\"username\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isBagMerged\");\r",
+									"    pm.expect(jsonData).to.have.property(\"loyaltyCardNumber\");\r",
+									"    pm.expect(jsonData).to.have.property(\"accountId\");\r",
+									"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+									"    pm.expect(jsonData).to.have.property(\"cookies\");\r",
+									"    pm.expect(jsonData).to.have.property(\"customData\");\r",
+									"    pm.expect(jsonData).to.have.property(\"success\");\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"    pm.expect(jsonData).to.have.property(\"responseCode\");\r",
+									"    pm.expect(jsonData).to.have.property(\"statusCode\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"responsCode is 0\", function () {\r",
+									"    pm.expect(jsonData.responseCode).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Save credentials if not null\", function () {\r",
+									"    if (pm.expect(jsonData.encryptedPassword).not.to.eql(undefined))\r",
+									"    {\r",
+									"        pm.globals.set(\"encryptedPassword\",jsonData.encryptedPassword);        \r",
+									"    }\r",
+									"    if (pm.expect(jsonData.username).not.to.eql(undefined))\r",
+									"    {\r",
+									"        pm.globals.set(\"userName\",jsonData.username);        \r",
+									"    }    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"isPromotion\": true,\r\n \"allowDataSharing\": false,\r\n \"profile\": {\r\n  \"allowDataSharing\": false,\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"title\": \"Mr\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"isPromotion\": true,\r\n  \"encryptedPassword\": \"TestingAPIdummy!\",\r\n  \"lastName\": \"{{$randomLastName}}\"\r\n },\r\n \"credentials\": {\r\n  \"username\": \"{{$randomEmail}}\",\r\n  \"password\": \"TestingAPIdummy!\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{RegisterURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isPromotion\\\":true,\\\"allowDataSharing\\\":false,\\\"profile\\\":{\\\"allowDataSharing\\\":false,\\\"firstName\\\":\\\"Ciaules\\\",\\\"title\\\":\\\"Mr\\\",\\\"email\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"isPromotion\\\":true,\\\"encryptedPassword\\\":\\\"CottonTest12?\\\",\\\"lastName\\\":\\\"Gelule\\\"},\\\"credentials\\\":{\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/register/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				},
+				{
+					"name": "Registration - Fail - Already registered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message is present\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"User with this email already exists.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"isPromotion\": true,\r\n \"allowDataSharing\": false,\r\n \"profile\": {\r\n  \"allowDataSharing\": false,\r\n  \"firstName\": \"Stefan\",\r\n  \"title\": \"Mr\",\r\n  \"email\": \"ghitagelu@gmail.com\",\r\n  \"isPromotion\": true,\r\n  \"encryptedPassword\": \"TestingAPIdummy!\",\r\n  \"lastName\": \"Ghita\"\r\n },\r\n \"credentials\": {\r\n  \"password\": \"TestingAPIdummy!\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{RegisterURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isPromotion\\\":true,\\\"allowDataSharing\\\":false,\\\"profile\\\":{\\\"allowDataSharing\\\":false,\\\"firstName\\\":\\\"Ciaules\\\",\\\"title\\\":\\\"Mr\\\",\\\"email\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"isPromotion\\\":true,\\\"encryptedPassword\\\":\\\"CottonTest12?\\\",\\\"lastName\\\":\\\"Gelule\\\"},\\\"credentials\\\":{\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/register/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				},
+				{
+					"name": "Registration - Fail - Invalid email format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message is present\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Not acceptable email. Please use a different one.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"isPromotion\": true,\r\n \"allowDataSharing\": false,\r\n \"profile\": {\r\n  \"allowDataSharing\": false,\r\n  \"firstName\": \"Stefan\",\r\n  \"title\": \"Mr\",\r\n  \"email\": \"testingInvalidEmail\",\r\n  \"isPromotion\": true,\r\n  \"encryptedPassword\": \"TestingAPIdummy!\",\r\n  \"lastName\": \"Ghita\"\r\n },\r\n \"credentials\": {\r\n  \"username\": \"testingInvalidEmail\",\r\n  \"password\": \"TestingAPIdummy!\"\r\n }\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{RegisterURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isPromotion\\\":true,\\\"allowDataSharing\\\":false,\\\"profile\\\":{\\\"allowDataSharing\\\":false,\\\"firstName\\\":\\\"Ciaules\\\",\\\"title\\\":\\\"Mr\\\",\\\"email\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"isPromotion\\\":true,\\\"encryptedPassword\\\":\\\"CottonTest12?\\\",\\\"lastName\\\":\\\"Gelule\\\"},\\\"credentials\\\":{\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/register/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2.Log in",
+			"item": [
+				{
+					"name": "Account Login - success + save credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"birthday\");\r",
+									"    pm.expect(jsonData).to.have.property(\"phone\");\r",
+									"    pm.expect(jsonData).to.have.property(\"email\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isPromotion\");\r",
+									"    pm.expect(jsonData).to.have.property(\"allowDataSharing\");\r",
+									"    pm.expect(jsonData).to.have.property(\"encryptedPassword\");\r",
+									"    pm.expect(jsonData).to.have.property(\"username\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isBagMerged\");\r",
+									"    pm.expect(jsonData).to.have.property(\"loyaltyCardNumber\");\r",
+									"    pm.expect(jsonData).to.have.property(\"accountId\");\r",
+									"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+									"    pm.expect(jsonData).to.have.property(\"cookies\");\r",
+									"    pm.expect(jsonData).to.have.property(\"customData\");\r",
+									"    pm.expect(jsonData).to.have.property(\"success\");\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"    pm.expect(jsonData).to.have.property(\"responseCode\");\r",
+									"    pm.expect(jsonData).to.have.property(\"statusCode\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"responsCode is 0\", function () {\r",
+									"    pm.expect(jsonData.responseCode).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Save credentials if not null\", function () {\r",
+									"    if (pm.expect(jsonData.encryptedPassword).not.to.eql(undefined))\r",
+									"    {\r",
+									"        pm.globals.set(\"encryptedPassword\",jsonData.encryptedPassword);        \r",
+									"    }\r",
+									"    if (pm.expect(jsonData.username).not.to.eql(undefined))\r",
+									"    {\r",
+									"        pm.globals.set(\"userName\",jsonData.username);        \r",
+									"    }    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isMasterCard\":true,\r\n    \"username\":\"ghitagelu@gmail.com\",\r\n    \"password\":\"TestingAPIdummy!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{LoginURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: A2D986B5-3FDF-42F8-A1F6-E5D7E5EA6776\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isMasterCard\\\":true,\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/login/198/A2D986B5-3FDF-42F8-A1F6-E5D7E5EA6776\""
+					},
+					"response": []
+				},
+				{
+					"name": "Account Login - Fail - Invalid credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"message is present\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Please check your username and password.\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"errorMessage is present \", function () {\r",
+									"    pm.expect(jsonData.errorMessage).to.eql(\"Authorization failed.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isMasterCard\":true,\r\n    \"username\":\"{{$randomEmail}}\",\r\n    \"password\":\"@#(@$!&*(!@$HJASKNjnaskjdn@#!)IE)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{LoginURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: A2D986B5-3FDF-42F8-A1F6-E5D7E5EA6776\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{\\\"isMasterCard\\\":true,\\\"username\\\":\\\"ciaulesgelule@yahoo.com\\\",\\\"password\\\":\\\"CottonTest12?\\\"}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/login/198/A2D986B5-3FDF-42F8-A1F6-E5D7E5EA6776\""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.Account details",
+			"item": [
+				{
+					"name": "Account details - success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"birthday\");\r",
+									"    pm.expect(jsonData).to.have.property(\"phone\");\r",
+									"    pm.expect(jsonData).to.have.property(\"email\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isPromotion\");\r",
+									"    pm.expect(jsonData).to.have.property(\"allowDataSharing\");\r",
+									"    pm.expect(jsonData).to.have.property(\"encryptedPassword\");\r",
+									"    pm.expect(jsonData).to.have.property(\"username\");\r",
+									"    pm.expect(jsonData).to.have.property(\"isBagMerged\");\r",
+									"    pm.expect(jsonData).to.have.property(\"loyaltyCardNumber\");\r",
+									"    pm.expect(jsonData).to.have.property(\"accountId\");\r",
+									"    pm.expect(jsonData).to.have.property(\"gender\");\r",
+									"    pm.expect(jsonData).to.have.property(\"cookies\");\r",
+									"    pm.expect(jsonData).to.have.property(\"customData\");\r",
+									"    pm.expect(jsonData).to.have.property(\"success\");\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"    pm.expect(jsonData).to.have.property(\"responseCode\");\r",
+									"    pm.expect(jsonData).to.have.property(\"statusCode\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "{{encryptedPassword}}",
+								"username": "{{userName}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{AccountURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"authorization: Basic Y2lhdWxlc2dlbHVsZUB5YWhvby5jb206blhFQ2NhQUJPMTR3VTgxNmtCMW1SQT09\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/details/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				},
+				{
+					"name": "Account details - Fail - invalid credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData).to.have.property(\"statusCode\");\r",
+									"    pm.expect(jsonData).to.have.property(\"exception\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is Internal Server Error\", function () {\r",
+									"    pm.expect(jsonData.statusCode).to.eql(\"InternalServerError\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "djanrjk32nrl2",
+								"username": "sdkln32klrnl23"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "{{AccountURL}}",
+						"description": "Generated from cURL: curl -H \"Host: staging.poq.io\" -H \"content-type: application/json\" -H \"poq-country-identifier: GB\" -H \"poq-app-id: 198\" -H \"accept: application/json\" -H \"poq-app-identifier: 4b59fa37-7438-491d-bd64-bdca49131b22\" -H \"authorization: Basic Y2lhdWxlc2dlbHVsZUB5YWhvby5jb206blhFQ2NhQUJPMTR3VTgxNmtCMW1SQT09\" -H \"poq-currency-identifier: GBP\" -H \"version-code: 24.8\" -H \"accept-language: en-GB,en;q=0.9\" -H \"platform: iphone\" -H \"poq-user-id: DF2EF736-B7E5-43F2-B533-4B85D957BF71\" -H \"user-agent: iOS/16.7.10 poq.ios/19.1.9 com.cottontradersltd.cottontraders/24.2.1\" -H \"currency-code: GBP\" -H \"appuseragent: Poq-Native-iOS-App\" -H \"pragma: no-cache\" -H \"cache-control: no-cache\" --data-binary \"{}\" --compressed \"https://staging.poq.io/clients/cotton-traders/v2/account/details/198/DF2EF736-B7E5-43F2-B533-4B85D957BF71\""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.Product details",
+			"item": [
+				{
+					"name": "Product details - Fail invalid ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ProductsURL}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Product details - Fail no ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"errorMessage\");\r",
+									"    pm.expect(jsonData).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"errorMessage not null\", function () {\r",
+									"    pm.expect(jsonData.errorMessage).to.eql(\"One of the following query parameters is required: 'ids', 'listing-ids', 'variant-ids'.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ProductsURL}}",
+							"host": [
+								"{{ProductsURL}}"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "AH12630",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product details - success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected fields\", function () {\r",
+									"    pm.expect(jsonData[0]).to.have.property(\"details\");\r",
+									"    pm.expect(jsonData[0].details).to.have.property(\"name\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ProductsURL}}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
